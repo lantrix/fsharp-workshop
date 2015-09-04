@@ -6,7 +6,7 @@ open Examples
 //
 //  The following examples shows some simple matching on a list by splitting between the head, tail and an empty list.
 //  Another thing to note is the use of the underscore which is used when you don't care specifically about the value.
-//  In match expressions they're often used as the catch all condition. 
+//  In match expressions they're often used as the catch all condition.
 
 let fibonacci = [0; 1; 1; 2; 3; 5; 8; 13; 21; 34; 55; 89]
 
@@ -34,13 +34,21 @@ let isLast =
 // Using only a match expression, return the fourth item from the Fibonacci sequence (use fib25)
 
 // fourthFib: () -> int option
-let fourthFib () = failwith "todo"
+let fourthFib () =
+  match fibonacci with
+    | _ :: _ :: _ :: x :: _ -> Some (x)
+    | _                     -> None
 
 test "Return the fourth item in the Fibonacci sequence" (fun () ->
   match fourthFib () with
   | Some x  -> x = 2
   | _       -> false
 )
+
+let moi =
+  match fibonacci with
+    | _ :: _ :: y :: x :: _ -> Some (x , y)
+    | _                     -> None
 
 
 (*********************************************************************************************************************)

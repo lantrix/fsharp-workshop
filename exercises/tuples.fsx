@@ -1,5 +1,5 @@
-(* 
- Tuples are a comma separated collection of values. 
+(*
+ Tuples are a comma separated collection of values.
  Each tuple can be considered as a set of all values of the types defined in the tuple.
  *)
 #load "./examples.fs"
@@ -18,7 +18,7 @@ let vect2 = (20.7, 6.3)
 // Tuples are not just restricted to two values.
 // We could also express a 3D coordinate of (x, y, z).
 //
-let box = (5, 14, 10) 
+let box = (5, 14, 10)
 
 
 //
@@ -38,8 +38,9 @@ let fileSize = ("/var/log/err.log", 452264)
 //      fileSize : string * int
 //
 
+
 //
-// An important concept related to tuples is pattern matching 
+// An important concept related to tuples is pattern matching
 // sometimes also know as destructuring.
 // Pattern matching is covered in much more depth later on in
 // the workshop.
@@ -47,7 +48,7 @@ let fileSize = ("/var/log/err.log", 452264)
 
 //
 // Exercise 2: Basic tuple pattern matching/deconstructing.
-// 
+//
 // Execute the following line in the REPL.
 let x, y = vect1
 
@@ -55,19 +56,27 @@ let x, y = vect1
 // Now write a let expression to deconstruct the box and fileSize tuples.
 //
 
+let x, y, z = box
+
 //
 // Optional Exercise: Ignoring values
 //
 // Deconstruct the fileSize tuple to get the file name and ignore the length
 //
 
+let myFilename, length = fileSize
+let myFilenameOne, _ = fileSize
 
 //
 // Exercise 3:
 //   Write a function to add two vectors.
 //   Hint: watch the types, and feel free to modify the arguments v1 & v2
 //
-let addVect v1 v2 = failwith "Todo"
+let addVect v1 v2 =
+    let ( x:float, y:float ) = v1
+    let ( a:float, b:float ) = v2
+    (x + a, y + b)
+
 
 test "Add two vectors" (fun _ ->
   addVect vect1 vect2 = (25.7, 20.8)
@@ -77,3 +86,5 @@ test "Add two vectors" (fun _ ->
 // Exercise 4: Look at the type signature of System.Int32.TryParse.
 //   Use the REPL or hover over it in the IDE text editor.
 //
+
+let result = System.Int32.TryParse "123s"

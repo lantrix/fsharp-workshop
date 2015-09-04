@@ -34,6 +34,8 @@ let vect1 = { x = 3.5; y = 5.6 }
 //   Create a new value called player with name and location.
 //
 
+type player = { name : string; coordinates : Coord2d}
+let myPlayer = { name = "Ted"; coordinates = vect1 }
 
 //
 // By default records are immutable, so how
@@ -46,7 +48,8 @@ let vect2 = { vect1 with x = 0.0 }
 //
 // Exercise 2: Create a new player value with a new location at 0,0 from the value player1
 //
-
+let myplayer2coords = { vect1 with x = 0.0 ; y = 0.0 }
+let myPlayer2' = { myPlayer with coordinates = { x = 0.0 ; y = 0.0} }
 
 //
 // Exercise 3: Just like tuples, recrods can be deconstructed (pattern matched).
@@ -54,11 +57,9 @@ let vect2 = { vect1 with x = 0.0 }
 //   (Hint: look at the tuple destructuring exercise)
 //
 
-
-
 //
 // An important difference between Records and Classes:
-//   Records have structural equality semantics 
+//   Records have structural equality semantics
 //   whereas classes have reference equality semantics.
 
 //
@@ -89,4 +90,4 @@ test "Test reference equality" (fun _ ->
     let areEqual = vect1 = vect1'
     areEqual = failwith "todo"
     )
- 
+

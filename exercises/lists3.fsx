@@ -33,13 +33,22 @@ open Examples
 |> List.reduce (fun acc x -> acc + x)
 
 // List.fold, like List.reduce, will apply a function to each item in the list, however it starts off with an initial
-// value that is passed in and does not have to be of the same type as the list. 
+// value that is passed in and does not have to be of the same type as the list.
 // The LINQ equivalent for this is Aggregate
 [ 1 .. 10 ]
 |> List.fold (fun state x -> sprintf "%s %d" state x) "Numbers:"
 
 // sum the all the numbers divisible by three and five from 1 to 100
-let sum35 () = failwith "todo"
+
+let booya =
+    [1 .. 100]
+        |> List.filter (fun x -> (x % 3 = 0 && x % 5 = 0))
+    |> List.sum
+
+let sum35 () =
+    [1 .. 100]
+        |> List.filter (fun x -> (x % 3 = 0 && x % 5 = 0))
+    |> List.sum
 
 test "Sum the all the numbers divisible by three and five from 1 to 100" (fun () ->
   sum35  () = 315
@@ -47,7 +56,18 @@ test "Sum the all the numbers divisible by three and five from 1 to 100" (fun ()
 
 // Write a function that calculates the numbers divisible by three and five from 1 to 100 and outputs as a
 // comma separated list.
-let print35 () = failwith "todo"
+
+let booya =
+    [1 .. 100]
+        |> List.filter (fun x -> (x % 3 = 0 && x % 5 = 0))
+        |> List.map string
+        |> List.reduce (fun acc x -> acc + ", " + x)
+
+let print35 () =
+    [1 .. 100]
+        |> List.filter (fun x -> (x % 3 = 0 && x % 5 = 0))
+        |> List.map string
+        |> List.reduce (fun acc x -> acc + ", " + x)
 
 test "Numbers divisible by three and five as a comma separated list" (fun () ->
   print35 () = "15, 30, 45, 60, 75, 90"

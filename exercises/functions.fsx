@@ -12,7 +12,7 @@ let a = 1
 // functions are first class values in F# so
 // the syntax is identical to the above except that
 // it has a parameter
-let increment a = failwith "todo"
+let increment a = a + 1
 
 // notice that there no brackets when calling
 // the increment function. calling a function
@@ -41,7 +41,7 @@ let increment'' = fun a -> a + 1
 let increment''' : int -> int = fun a -> a + 1
 
 // add is a function of two parameters
-let add a b = failwith "todo"
+let add a b = a + b
 
 Examples.test "Can add two numbers" (fun () ->
   add 1 2 = 3
@@ -60,8 +60,7 @@ let increment'''' : int -> int = add 1
 
 // passing functions as arguments to other functions
 // is a really powerful technique. This is a silly example.
-let applyFunctionThenAdd2 f n =
-    failwith "todo"
+let applyFunctionThenAdd2 f n = (f n) + 2
 
 Examples.test "Multiply by two then add two" (fun () ->
     applyFunctionThenAdd2 (fun x -> x * 2) 10 = 22
@@ -91,7 +90,7 @@ Examples.test "add 40 (add 20 (increment n))" (fun () ->
 // try implementing ||> to do the same things as pipe
 let (||>) x f = failwith "todo"
 
-Examples.test "Custom pipe" (fun () -> 
+Examples.test "Custom pipe" (fun () ->
     10
     ||> (add 2)
     ||> increment

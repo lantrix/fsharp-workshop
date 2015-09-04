@@ -23,7 +23,9 @@ let bob  = { Name = "Bob";  ContactDetails = Nothing }
 
 let printContactDetails = function
   // Remove the following line and complete the function
-  | _ -> failwith "todo"
+  | Email e -> sprintf "email address - %s" e
+  | Phone p -> sprintf "phone number - %010d" p
+  | Nothing -> "no contact details found"
 
 test "Printing contact details #1" (fun _ ->
   printContactDetails jim.ContactDetails = "email address - jim@example.org"
